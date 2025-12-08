@@ -37,8 +37,18 @@ def getNames():
     ' Return: the list of player names
     ' 
     '''
-    
-
+    playerList = []
+    myName = input("What is your name?   ")
+    playerList.append(myName)
+    print("Add other players (one at a time) by typing their names and hitting enter. Type DONE when finished")
+    players = input()
+    while (players != "DONE"):
+        playerList.append(players)
+        print(players + " has been added!")
+        players = input()
+    print("Time to play!!!")
+    return playerList
+          
 def getThrower(players):
     '''
     ' Param: players (list of player names)
@@ -143,16 +153,17 @@ def runProgram():
     ' Return: none
     '''
     printIntro()
-
+    testPlayers = getNames()
+    #testPlayers = ["John","Taylor","Will","Jack"]
+    playSnowballFight(testPlayers)
+    winner = testPlayers[0]
+    printOutro(winner)
 
 
 runProgram()
 
 
-testPlayers = ["John","Taylor","Will","Jack"]
-playSnowballFight(testPlayers)
-winner = testPlayers[0]
-printOutro(winner)
+
 # testThrower = getThrower(testPlayers)
 # testVictim = getVictim(testPlayers, testThrower)
 # testHit = getHitResult()
