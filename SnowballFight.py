@@ -8,7 +8,7 @@
 
 import random
 import time
-
+from colorama import init, Fore, Back, Style
 
 def printIntro():
     '''
@@ -94,6 +94,13 @@ def getHitResult():
     else:
         return False
 
+def getCritResult():
+    crit = random.randint(1,10)
+    if (crit > 6):
+        return True
+    else:
+        return False
+
 
 def playSnowballFight(players):
     '''
@@ -115,13 +122,19 @@ def playSnowballFight(players):
         thrower = getThrower(players)
         victim = getVictim(players, thrower)
         hitResult = getHitResult()
+        CritResult = getCritResult()
 
         if hitResult == True:
             randomI = ("1","2")
             RandomB = random.choice(randomI)
-            if RandomB == "2":
-                print(thrower + " throws at " + victim + " and " + victim + " has been knocked out!")
-                players.remove(victim)
+
+            if RandomB == "2" or CritResult == True:
+                if CritResult == True:
+                    print(thrower + " throws at " + victim + " and inflicts CRITICAL DAMAGE on " + victim + " who has been knocked out!")
+                    players.remove(victim)
+                else:
+                    print(thrower + " throws at " + victim + " and " + victim + " has been knocked out!")
+                    players.remove(victim)
             else:
                 print(thrower + " throws at " + victim + " but " + victim + " survives the hit!")
             
