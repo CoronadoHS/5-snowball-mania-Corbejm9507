@@ -123,23 +123,27 @@ def playSnowballFight(players):
         victim = getVictim(players, thrower)
         hitResult = getHitResult()
         CritResult = getCritResult()
-
+        Crit1 = thrower + " throws at " + victim + " and inflicts " + Fore.CYAN + " CRITICAL DAMAGE " + Style.RESET_ALL + " on " + Fore.RED + victim + " who has been knocked out!" + Style.RESET_ALL
+        Crit2 = thrower + " throws at " + victim + " and inflicts " + Fore.CYAN + " a HEAD shot " + Style.RESET_ALL + " on " + Fore.RED + victim + " who gets thrown to the ground!" + Style.RESET_ALL
+        Critmessages = [Crit1, Crit2]
+        SMiss1 = Fore.WHITE + thrower + " throws at " + victim + " but " + Fore.YELLOW + victim + " survives the hit!" + Style.RESET_ALL
+        SMiss2 = Fore.WHITE + thrower + " throws at " + victim + " but " + Fore.YELLOW + " the snowball is blocked by a bird!!!" + Style.RESET_ALL
+        SMissmessages = [SMiss1, SMiss2]
         if hitResult == True:
             randomI = ("1","2")
             RandomB = random.choice(randomI)
-
             if RandomB == "2" or CritResult == True:
                 if CritResult == True:
-                    print(thrower + " throws at " + victim + " and inflicts CRITICAL DAMAGE on " + victim + " who has been knocked out!")
-                    players.remove(victim)
+                 print(random.choice(Critmessages))
+                 players.remove(victim)
                 else:
-                    print(thrower + " throws at " + victim + " and " + victim + " has been knocked out!")
+                    print(thrower + " throws at " + victim + " and " + Fore.RED + victim + " has been knocked out!" + Style.RESET_ALL)
                     players.remove(victim)
             else:
-                print(thrower + " throws at " + victim + " but " + victim + " survives the hit!")
+                print(random.choice(SMissmessages))
             
         else:
-            print(thrower + " Missed " + victim)
+            print(Fore.GREEN + thrower + " Missed " + victim + Style.RESET_ALL)
         time.sleep(3)
 def printOutro(winner):
     '''
